@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/puerta.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puerta"]
+size = Vector2(64, 64)
+
+[node name="Puerta" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_puerta")
+
+[node name="Luz" type="Polygon2D" parent="."]
+z_index = -5
+color = Color(0.95, 0.6, 0.2, 0.4)
+polygon = PackedVector2Array(-40, -28, 40, -28, 52, 44, -52, 44)
+
+[node name="Marco" type="Polygon2D" parent="."]
+color = Color(0.08, 0.06, 0.05, 1)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, -16, -32, -16)
+
+[node name="Hoja" type="Polygon2D" parent="."]
+position = Vector2(-26, -24)
+color = Color(0.55, 0.3, 0.14, 1)
+polygon = PackedVector2Array(0, -5, 52, -5, 52, 5, 0, 5)
+
+[node name="Picaporte" type="Polygon2D" parent="Hoja"]
+color = Color(1, 0.82, 0.3, 1)
+polygon = PackedVector2Array(42, -2, 47, -2, 47, 8, 42, 8)
+
+[node name="Cartel" type="Node2D" parent="."]
+z_index = -4
+position = Vector2(0, 52)
+
+[node name="Texto" type="Label" parent="Cartel"]
+offset_left = -60.0
+offset_top = -14.0
+offset_right = 60.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0.95, 0.6, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "SALIDA"
+horizontal_alignment = 1
+vertical_alignment = 1

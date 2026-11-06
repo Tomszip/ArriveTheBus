@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/musica.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/sonidos/musica_fondo.wav" id="2_musica"]
+
+[node name="Musica" type="AudioStreamPlayer"]
+stream = ExtResource("2_musica")
+volume_db = -8.0
+script = ExtResource("1_script")

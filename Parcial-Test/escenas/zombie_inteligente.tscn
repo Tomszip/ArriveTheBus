@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/zombie_inteligente.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/personajes/zoimbie1_hold.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/sonidos/muerte_zombie.ogg" id="3_sonido_muerte"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cuerpo"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mordida"]
+radius = 22.0
+
+[node name="ZombieInteligente" type="CharacterBody2D" groups=["zombies"]]
+collision_layer = 4
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_script")
+velocidad = 150.0
+distancia_deteccion = 400.0
+puntos_que_doy = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.62, 0.62, 1)
+offset = Vector2(4, 0)
+texture = ExtResource("2_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cuerpo")
+
+[node name="Mordida" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mordida"]
+shape = SubResource("CircleShape2D_mordida")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 8.0
+target_desired_distance = 24.0
+radius = 16.0
+
+[node name="SonidoMuerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sonido_muerte")
+volume_db = -2.0

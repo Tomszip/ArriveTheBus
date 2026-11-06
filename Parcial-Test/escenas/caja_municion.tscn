@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/caja_municion.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_caja"]
+radius = 22.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_brillo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector3(0, -40, 0)
+scale_min = 2.0
+scale_max = 3.0
+color = Color(1, 0.85, 0.35, 0.8)
+
+[node name="CajaMunicion" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_caja")
+
+[node name="Brillo" type="GPUParticles2D" parent="."]
+z_index = -3
+amount = 6
+lifetime = 0.9
+process_material = SubResource("ParticleProcessMaterial_brillo")
+
+[node name="Dibujo" type="Node2D" parent="."]
+z_index = -3
+
+[node name="Caja" type="Polygon2D" parent="Dibujo"]
+color = Color(0.3, 0.36, 0.18, 1)
+polygon = PackedVector2Array(-14, -10, 14, -10, 14, 10, -14, 10)
+
+[node name="Borde" type="Polygon2D" parent="Dibujo"]
+color = Color(0.78, 0.42, 0.16, 1)
+polygon = PackedVector2Array(-14, -10, 14, -10, 14, -6, -14, -6)
+
+[node name="Bala1" type="Polygon2D" parent="Dibujo"]
+color = Color(1, 0.82, 0.3, 1)
+polygon = PackedVector2Array(-9, -3, -5, -3, -5, 7, -9, 7)
+
+[node name="Bala2" type="Polygon2D" parent="Dibujo"]
+color = Color(1, 0.82, 0.3, 1)
+polygon = PackedVector2Array(-2, -3, 2, -3, 2, 7, -2, 7)
+
+[node name="Bala3" type="Polygon2D" parent="Dibujo"]
+color = Color(1, 0.82, 0.3, 1)
+polygon = PackedVector2Array(5, -3, 9, -3, 9, 7, 5, 7)

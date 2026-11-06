@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/personajes/hitman1_gun.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/sonidos/disparo.wav" id="3_disparo"]
+[ext_resource type="AudioStream" path="res://assets/sonidos/mordida.ogg" id="4_mordida"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 16.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fogonazo"]
+particle_flag_disable_z = true
+direction = Vector3(1, 0, 0)
+spread = 18.0
+initial_velocity_min = 180.0
+initial_velocity_max = 320.0
+gravity = Vector3(0, 0, 0)
+damping_min = 600.0
+damping_max = 800.0
+scale_min = 3.0
+scale_max = 5.0
+color = Color(1, 0.85, 0.35, 1)
+
+[node name="Jugador" type="CharacterBody2D" groups=["jugador"]]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+offset = Vector2(10, 0)
+texture = ExtResource("2_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="PuntaArma" type="Marker2D" parent="."]
+position = Vector2(36, 9)
+
+[node name="Fogonazo" type="GPUParticles2D" parent="PuntaArma"]
+emitting = false
+amount = 8
+lifetime = 0.12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fogonazo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = true
+position_smoothing_enabled = true
+
+[node name="SonidoDisparo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_disparo")
+volume_db = -6.0
+max_polyphony = 4
+
+[node name="SonidoMordida" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mordida")

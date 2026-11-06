@@ -1,0 +1,185 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/panel.png" id="2_panel"]
+[ext_resource type="Theme" path="res://assets/ui/tema_menu.tres" id="3_tema"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="Marcador" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_tema")
+
+[node name="PanelNivel" type="PanelContainer" parent="Marcador"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 16.0
+offset_bottom = 12.0
+mouse_filter = 2
+
+[node name="Textos" type="VBoxContainer" parent="Marcador/PanelNivel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Etiqueta" type="Label" parent="Marcador/PanelNivel/Textos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.6, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "NIVEL 1"
+horizontal_alignment = 0
+
+[node name="Valor" type="Label" parent="Marcador/PanelNivel/Textos"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "Nombre del nivel"
+vertical_alignment = 1
+
+[node name="PanelMunicion" type="PanelContainer" parent="Marcador"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Textos" type="VBoxContainer" parent="Marcador/PanelMunicion"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Etiqueta" type="Label" parent="Marcador/PanelMunicion/Textos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.6, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "CARGADOR"
+horizontal_alignment = 1
+
+[node name="Fila" type="HBoxContainer" parent="Marcador/PanelMunicion/Textos"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Balas" type="HBoxContainer" parent="Marcador/PanelMunicion/Textos/Fila"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 3
+
+[node name="Reserva" type="Label" parent="Marcador/PanelMunicion/Textos/Fila"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Reserva: 12"
+vertical_alignment = 1
+
+[node name="PanelPuntaje" type="PanelContainer" parent="Marcador"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 12.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="Textos" type="VBoxContainer" parent="Marcador/PanelPuntaje"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Etiqueta" type="Label" parent="Marcador/PanelPuntaje/Textos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.6, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "PUNTAJE"
+horizontal_alignment = 2
+
+[node name="Valor" type="Label" parent="Marcador/PanelPuntaje/Textos"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Cartel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Oscurecer" type="ColorRect" parent="Cartel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Panel" type="TextureRect" parent="Cartel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -150.0
+offset_right = 450.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="Cartel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Cartel/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "TITULO"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Cartel/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.75, 0.77, 1)
+theme_override_font_sizes/font_size = 24
+text = "Presioná R"
+horizontal_alignment = 1
